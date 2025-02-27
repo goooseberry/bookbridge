@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Bridge Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body class="bg-gradient-to-r from-blue-50 to-purple-50 text-gray-900 transition-colors duration-500">
+    <!-- Header -->
+    <header class="bg-purple-600 p-4 text-white flex justify-between items-center shadow-lg sticky top-0 z-50">
+        <h1 class="text-3xl font-bold">📚 Book Bridge</h1>
+        <nav class="hidden md:flex space-x-4 items-center">
+            <a href="donate.html" class="text-white hover:text-gray-300">Donate</a>
+            <a href="sell.html" class="text-white hover:text-gray-300">Sell</a>
+            <a href="buy.html" class="text-white hover:text-gray-300">Buy</a>
+            <a href="free-books.html" class="text-white hover:text-gray-300">Free Books</a>
+            <a href="dashboard.html" class="text-white hover:text-gray-300">Admin Dashboard</a>
+            <div class="relative">
+                <button id="profile-dropdown" class="flex items-center hover:text-gray-300 focus:outline-none">
+                    <img src="https://sickonsin.com/cdn/shop/products/Siamese_Cat_9_Lives_Club_Accessory_SickOnSin.jpg?v=1596859843" alt="Profile" class="w-10 h-10 rounded-full">
+                </button>
+                <div id="dropdown-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-50">
+                    <ul class="text-gray-700">
+                        <li><a href="profile.html" class="block px-4 py-2 hover:bg-purple-100">My Profile</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-purple-100">Edit Listings</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-purple-100">Wishlist</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-purple-100">Settings</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-purple-100">Sign Out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="text-center mt-12 px-4">
+        <h2 class="text-5xl font-extrabold mb-6">Find & Share Books</h2>
+        <p class="text-lg text-gray-600 mb-8">Swap Knowledge, Save Money</p>
+        
+        <!-- Search Bar -->
+        <div class="relative max-w-md mx-auto">
+            <input type="text" id="search" placeholder="Search all books..." class="p-3 border rounded-lg w-full shadow-md focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all placeholder:italic placeholder:text-gray-400">
+        </div>
+        <button id="explore-btn" class="mt-6 px-8 py-3 bg-purple-600 text-white rounded-lg shadow-lg hover:bg-purple-700 transition-all">Explore Books</button>
+    </section>
+
+    <!-- Book List Section -->
+    <section class="p-10">
+        <div id="book-list" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Book cards will be dynamically inserted here -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-purple-600 text-white text-center p-4 mt-16">
+        <p>&copy; 2023 Book Bridge. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // GSAP Animations (Only for header and heading)
+        gsap.from("header", { duration: 1, y: -50, opacity: 0, ease: "power2.out" });
+        gsap.from("h2", { duration: 1, x: -100, opacity: 0, delay: 0.5 });
+
+        // Dropdown Menu Functionality
+        const profileDropdown = document.getElementById('profile-dropdown');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+        let hideTimeout;
+
+        if (profileDropdown && dropdownMenu) {
+            profileDropdown.addEventListener('mouseenter', () => {
+                clearTimeout(hideTimeout);
+                dropdownMenu.classList.remove('hidden');
+            });
+
+            profileDropdown.addEventListener('mouseleave', () => {
+                hideTimeout = setTimeout(() => {
+                    dropdownMenu.classList.add('hidden');
+                }, 300);
+            });
+
+            dropdownMenu.addEventListener('mouseenter', () => {
+                clearTimeout(hideTimeout);
+            });
+
+            dropdownMenu.addEventListener('mouseleave', () => {
+                hideTimeout = setTimeout(() => {
+                    dropdownMenu.classList.add('hidden');
+                }, 300);
+            });
+        }
+
+        // Search Functionality
+        const searchInput = document.getElementById('search');
+        const exploreButton = document.getElementById('explore-btn');
+
+        if (searchInput && exploreButton) {
+            exploreButton.addEventListener('click', () => {
+                const searchTerm = searchInput.value.trim();
+                if (searchTerm) {
+                    alert(`Searching for: ${searchTerm}`); // Replace with actual search logic
+                } else {
+                    alert('Please enter a search term.');
+                }
+            });
+        }
+
+        // Book List Loading Animation
+        const bookList = document.getElementById('book-list');
+        const books = [
+            { title: "Book 1", author: "Author 1", image: "https://via.placeholder.com/150" },
+            { title: "Book 2", author: "Author 2", image: "https://via.placeholder.com/150" },
+            { title: "Book 3", author: "Author 3", image: "https://via.placeholder.com/150" },
+        ];
+
+        books.forEach(book => {
+            const bookCard = document.createElement('div');
+            bookCard.className = 'book-card bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105';
+            bookCard.innerHTML = `
+                <img src="${book.image}" alt="${book.title}" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-bold">${book.title}</h3>
+                    <p class="text-gray-600">${book.author}</p>
+                </div>
+            `;
+            bookList.appendChild(bookCard);
+        });
+    </script>
+</body>
+</html>

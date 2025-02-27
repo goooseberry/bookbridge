@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Book Bridge</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-blue-50 to-purple-50 text-gray-900">
+    <header class="bg-purple-600 p-4 text-white flex justify-between items-center shadow-lg sticky top-0 z-50">
+        <h1 class="text-3xl font-bold">📚 Book Bridge</h1>
+        <nav class="hidden md:flex space-x-4 items-center">
+            <a href="dashboard.html" class="text-white hover:text-gray-300">Home</a>
+        </nav>
+    </header>
+
+    <section class="flex justify-center items-center min-h-screen p-4">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-2xl">
+            <h2 class="text-2xl font-bold mb-6 text-center">Your Profile</h2>
+            <div class="flex items-center space-x-4 mb-6">
+                <img src="https://sickonsin.com/cdn/shop/products/Siamese_Cat_9_Lives_Club_Accessory_SickOnSin.jpg?v=1596859843" alt="👤" class="w-24 h-24 rounded-full">
+                <div>
+                    <!-- Name Block with Pencil Icon -->
+                    <div class="flex items-center space-x-2">
+                        <h3 id="user-name" class="text-xl font-bold">John Doe</h3>
+                        <button id="edit-name" class="text-gray-500 hover:text-purple-600 focus:outline-none">
+                            ✏️
+                        </button>
+                    </div>
+                    <p class="text-gray-600">john.doe@example.com</p>
+                </div>
+            </div>
+
+            <!-- Editable Name Field (Hidden by Default) -->
+            <div id="edit-name-form" class="hidden">
+                <input type="text" id="new-name" value="John Doe" class="p-2 border rounded-lg focus:ring-2 focus:ring-purple-500">
+                <button id="save-name" class="ml-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all">Save</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-purple-600 text-white text-center p-4 mt-16">
+        <p>&copy; 2023 Book Bridge. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Edit Name Functionality
+        const editNameButton = document.getElementById('edit-name');
+        const userName = document.getElementById('user-name');
+        const editNameForm = document.getElementById('edit-name-form');
+        const newNameInput = document.getElementById('new-name');
+        const saveNameButton = document.getElementById('save-name');
+
+        // Show the edit form and hide the pencil icon when the pencil icon is clicked
+        editNameButton.addEventListener('click', () => {
+            editNameButton.style.display = 'none'; // Hide the pencil icon
+            editNameForm.style.display = 'flex'; // Show the edit form
+            newNameInput.value = userName.textContent; // Pre-fill the input with the current name
+            newNameInput.focus(); // Focus on the input field
+        });
+
+        // Save the new name and show the pencil icon again when the Save button is clicked
+        saveNameButton.addEventListener('click', () => {
+            const newName = newNameInput.value.trim();
+            if (newName) {
+                userName.textContent = newName; // Update the displayed name
+                editNameForm.style.display = 'none'; // Hide the edit form
+                editNameButton.style.display = 'inline-block'; // Show the pencil icon again
+                alert('Name updated successfully!'); // Show a success message
+            } else {
+                alert('Please enter a valid name.'); // Show an error message if the name is empty
+            }
+        });
+
+        // Hide the edit form and show the pencil icon when clicking outside of it
+        document.addEventListener('click', (event) => {
+            if (!editNameForm.contains(event.target) && !editNameButton.contains(event.target)) {
+                editNameForm.style.display = 'none'; // Hide the edit form
+                editNameButton.style.display = 'inline-block'; // Show the pencil icon again
+            }
+        });
+    </script>
+</body>
+</html>

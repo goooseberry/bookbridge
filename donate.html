@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate Books - Book Bridge</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        /* Custom Calendar Styles */
+        .calendar-container {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 260px;
+            text-align: center;
+            position: relative;
+            margin-top: 10px;
+        }
+        .dropdowns {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            cursor: pointer;
+            margin-bottom: 5px;
+            position: relative;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            z-index: 1000; /* Ensure dropdowns appear above other elements */
+            padding: 5px;
+            width: max-content;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .dropdown.active .dropdown-menu {
+            display: block;
+        }
+        .dropdown-item {
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .dropdown-item:hover, .day:hover, .day.selected {
+            background: #e9d5ff;
+            color: #9333ea;
+            border-radius: 6px;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+            font-size: 12px;
+        }
+        .day {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s ease-in-out;
+        }
+        .dropdown span::after {
+            content: " ▼";
+            font-size: 12px;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-r from-blue-50 to-purple-50 text-gray-900 transition-colors duration-500">
+    <!-- Header -->
+    <header class="bg-purple-600 p-4 text-white flex justify-between items-center shadow-lg sticky top-0 z-50">
+        <h1 class="text-3xl font-bold">📚 Book Bridge</h1>
+        <nav class="hidden md:flex space-x-4 items-center">
+            <a href="dashboard.html" class="text-white hover:text-gray-300">Home</a>
+            <a href="sell.html" class="text-white hover:text-gray-300">Sell</a>
+            <a href="buy.html" class="text-white hover:text-gray-300">Buy</a>
+            <a href="free-books.html" class="text-white hover:text-gray-300">Free Books</a>
+            <div class="relative">
+                <button id="profile-dropdown" class="flex items-center hover:text-gray-300 focus:outline-none">
+                    <img src="https://sickonsin.com/cdn/shop/products/Siamese_Cat_9_Lives_Club_Accessory_SickOnSin.jpg?v=1596859843" alt="Profile" class="w-10 h-10 rounded-full">
+                </button>
+                <div id="dropdown-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-50">
+                    <ul class="text-gray-700">
+                        <li><a href="profile.html" class="block px-4 py-2 hover:bg-purple-100">My Profile</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-purple-100">Edit Listings</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-purple-100">Wishlist</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-purple-100">Settings</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-purple-100">Sign Out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="flex justify-center items-center min-h-screen">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+            <h2 class="text-2xl font-bold mb-6 text-center">Donate Books</h2>
+            <form id="donate-form">
+                <!-- Book Title -->
+                <div class="mb-4">
+                    <label for="book-title" class="block text-sm font-medium text-gray-700">Book Title</label>
+                    <input type="text" id="book-title" name="book-title" class="mt-1 p-2 w-full border rounded-lg focus:ring-2 focus:ring-purple-500" required>
+                </div>
+                
+                <!-- Author -->
+                <div class="mb-4">
+                    <label for="book-author" class="block text-sm font-medium text-gray-700">Author</label>
+                    <input type="text" id="book-author" name="book-author" class="mt-1 p-2 w-full border rounded-lg focus:ring-2 focus:ring-purple-500" required>
+                </div>
+                
+                <!-- Book Cover Image -->
+                <div class="mb-4">
+                    <label for="book-image" class="block text-sm font-medium text-gray-700">Book Cover Image</label>
+                    <input type="file" id="book-image" name="book-image" class="mt-1 p-2 w-full border rounded-lg focus:ring-2 focus:ring-purple-500" accept="image/*" required>
+                </div>
+
+                <!-- Temporary Donation Checkbox -->
+                <div class="mb-4 flex items-center">
+                    <label for="temporary-donation" class="flex items-center cursor-pointer">
+                        <div class="relative">
+                            <input type="checkbox" id="temporary-donation" name="temporary-donation" class="sr-only">
+                            <div class="w-6 h-6 bg-white border-2 border-gray-300 rounded-md flex items-center justify-center transition-all duration-300 ease-in-out">
+                                <svg class="w-4 h-4 text-purple-600 opacity-0 transition-opacity duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                        </div>
+                        <span class="ml-2 text-sm text-gray-700">I want the book back after some time</span>
+                    </label>
+                </div>
+                
+                <!-- Return Date (Hidden by Default) -->
+                <div id="return-date-container" class="mb-4 hidden">
+                    <label for="return-date" class="block text-sm font-medium text-gray-700">Return Date</label>
+                    <div class="relative">
+                        <input type="text" id="return-date" name="return-date" class="mt-1 p-2 w-full border rounded-lg focus:ring-2 focus:ring-purple-500 pr-10" placeholder="Select Date" readonly>
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer" id="open-calendar">
+                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="calendar-container hidden mt-2" id="calendar-container">
+                        <div class="dropdowns">
+                            <div class="dropdown relative">
+                                <span id="selected-month">Feb</span>
+                                <div class="dropdown-menu absolute mt-1 z-50" id="month-menu"></div>
+                            </div>
+                            <div class="dropdown relative">
+                                <span id="selected-year">2025</span>
+                                <div class="dropdown-menu absolute mt-1 z-50" id="year-menu"></div>
+                            </div>
+                        </div>
+                        <div class="calendar-grid" id="calendar"></div>
+                    </div>
+                </div>
+                
+                <!-- Condition of the Book -->
+                <div class="mb-4 relative">
+                    <label for="book-condition" class="block text-sm font-medium text-gray-700">Condition</label>
+                    <button id="condition-dropdown" class="mt-1 p-2 w-full border rounded-lg focus:ring-2 focus:ring-purple-500 text-left flex justify-between items-center">
+                        <span>Select Condition</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="condition-menu" class="hidden absolute w-full bg-white rounded-lg shadow-lg mt-1 z-50">
+                        <ul class="text-gray-700">
+                            <li><button type="button" class="block px-4 py-2 w-full text-left hover:bg-purple-100" data-value="new">New</button></li>
+                            <li><button type="button" class="block px-4 py-2 w-full text-left hover:bg-purple-100" data-value="like-new">Like New</button></li>
+                            <li><button type="button" class="block px-4 py-2 w-full text-left hover:bg-purple-100" data-value="good">Good</button></li>
+                            <li><button type="button" class="block px-4 py-2 w-full text-left hover:bg-purple-100" data-value="fair">Fair</button></li>
+                            <li><button type="button" class="block px-4 py-2 w-full text-left hover:bg-purple-100" data-value="poor">Poor</button></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="mb-4">
+                    <label for="contact-info" class="block text-sm font-medium text-gray-700">Contact Information</label>
+                    <input type="text" id="contact-info" name="contact-info" class="mt-1 p-2 w-full border rounded-lg focus:ring-2 focus:ring-purple-500" placeholder="Email or Phone Number" required>
+                </div>
+                
+                <!-- Submit Button -->
+                <button type="submit" class="w-full bg-purple-600 text-white p-2 rounded-lg hover:bg-purple-700 transition-all">Donate Book</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-purple-600 text-white text-center p-4 mt-16">
+        <p>&copy; 2023 Book Bridge. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // GSAP Animations (Only for header and heading)
+        gsap.from("header", { duration: 1, y: -50, opacity: 0, ease: "power2.out" });
+        gsap.from("h2", { duration: 1, x: -100, opacity: 0, delay: 0.5 });
+
+        // Dropdown Menu Functionality
+        const profileDropdown = document.getElementById('profile-dropdown');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+        let hideTimeout;
+
+        if (profileDropdown && dropdownMenu) {
+            profileDropdown.addEventListener('mouseenter', () => {
+                clearTimeout(hideTimeout);
+                dropdownMenu.classList.remove('hidden');
+            });
+
+            profileDropdown.addEventListener('mouseleave', () => {
+                hideTimeout = setTimeout(() => {
+                    dropdownMenu.classList.add('hidden');
+                }, 300);
+            });
+
+            dropdownMenu.addEventListener('mouseenter', () => {
+                clearTimeout(hideTimeout);
+            });
+
+            dropdownMenu.addEventListener('mouseleave', () => {
+                hideTimeout = setTimeout(() => {
+                    dropdownMenu.classList.add('hidden');
+                }, 300);
+            });
+        }
+
+        // Condition Dropdown Functionality
+        const conditionDropdown = document.getElementById('condition-dropdown');
+        const conditionMenu = document.getElementById('condition-menu');
+        let conditionHideTimeout;
+
+        if (conditionDropdown && conditionMenu) {
+            conditionDropdown.addEventListener('mouseenter', () => {
+                clearTimeout(conditionHideTimeout);
+                conditionMenu.classList.remove('hidden');
+            });
+
+            conditionDropdown.addEventListener('mouseleave', () => {
+                conditionHideTimeout = setTimeout(() => {
+                    conditionMenu.classList.add('hidden');
+                }, 300);
+            });
+
+            conditionMenu.addEventListener('mouseenter', () => {
+                clearTimeout(conditionHideTimeout);
+            });
+
+            conditionMenu.addEventListener('mouseleave', () => {
+                conditionHideTimeout = setTimeout(() => {
+                    conditionMenu.classList.add('hidden');
+                }, 300);
+            });
+
+            // Update selected condition
+            conditionMenu.querySelectorAll('button').forEach(button => {
+                button.addEventListener('click', () => {
+                    conditionDropdown.querySelector('span').textContent = button.textContent;
+                    conditionMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        // Toggle return date field based on checkbox state
+        const temporaryDonationCheckbox = document.getElementById('temporary-donation');
+        const returnDateContainer = document.getElementById('return-date-container');
+        const returnDateInput = document.getElementById('return-date');
+        const calendarContainer = document.getElementById('calendar-container');
+        const openCalendarButton = document.getElementById('open-calendar');
+        const checkboxContainer = temporaryDonationCheckbox.nextElementSibling;
+        const checkboxIcon = checkboxContainer.querySelector('svg');
+
+        temporaryDonationCheckbox.addEventListener('change', () => {
+            if (temporaryDonationCheckbox.checked) {
+                returnDateContainer.classList.remove('hidden');
+                checkboxContainer.classList.replace('border-gray-300', 'border-purple-500');
+                checkboxIcon.classList.replace('opacity-0', 'opacity-100');
+            } else {
+                returnDateContainer.classList.add('hidden');
+                checkboxContainer.classList.replace('border-purple-500', 'border-gray-300');
+                checkboxIcon.classList.replace('opacity-100', 'opacity-0');
+            }
+        });
+
+        // Show calendar when the input field or the calendar icon is clicked
+        function toggleCalendar() {
+            calendarContainer.classList.toggle('hidden');
+        }
+
+        returnDateInput.addEventListener('click', toggleCalendar);
+        openCalendarButton.addEventListener('click', toggleCalendar);
+
+        // Hide calendar when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('#calendar-container') && !event.target.closest('#return-date') && !event.target.closest('#open-calendar')) {
+                calendarContainer.classList.add('hidden');
+            }
+        });
+
+        // Custom Calendar Script
+        document.addEventListener("DOMContentLoaded", function() {
+            const monthMenu = document.getElementById("month-menu");
+            const yearMenu = document.getElementById("year-menu");
+            const calendar = document.getElementById("calendar");
+            const selectedMonth = document.getElementById("selected-month");
+            const selectedYear = document.getElementById("selected-year");
+            const currentYear = new Date().getFullYear();
+            const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+            // Simplified dropdown toggle logic
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
+                dropdown.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Stop event from bubbling
+                    const wasActive = this.classList.contains('active');
+                    
+                    // Close all dropdowns
+                    document.querySelectorAll('.dropdown').forEach(d => {
+                        d.classList.remove('active');
+                    });
+
+                    // Toggle current dropdown if it wasn't active
+                    if (!wasActive) {
+                        this.classList.add('active');
+                    }
+                });
+            });
+
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function() {
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            });
+
+            months.forEach((m, i) => {
+                let div = document.createElement("div");
+                div.textContent = m;
+                div.className = "dropdown-item";
+                div.onclick = function(e) {
+                    e.stopPropagation(); // Stop event from bubbling
+                    selectedMonth.textContent = m;
+                    updateCalendar(i + 1, parseInt(selectedYear.textContent));
+                    // Explicitly close the dropdown
+                    monthMenu.parentElement.classList.remove('active');
+                };
+                monthMenu.appendChild(div);
+            });
+
+            for (let y = currentYear; y <= currentYear + 4; y++) {
+                let div = document.createElement("div");
+                div.textContent = y;
+                div.className = "dropdown-item";
+                div.onclick = function(e) {
+                    e.stopPropagation(); // Stop event from bubbling
+                    selectedYear.textContent = y;
+                    updateCalendar(months.indexOf(selectedMonth.textContent) + 1, y);
+                    // Explicitly close the dropdown
+                    yearMenu.parentElement.classList.remove('active');
+                };
+                yearMenu.appendChild(div);
+            }
+
+            function updateCalendar(month, year) {
+                calendar.innerHTML = "";
+                let daysInMonth = new Date(year, month, 0).getDate();
+                for (let d = 1; d <= daysInMonth; d++) {
+                    let dayElem = document.createElement("div");
+                    dayElem.textContent = d;
+                    dayElem.className = "day";
+                    dayElem.onclick = function(e) {
+                        e.stopPropagation(); // Stop event from bubbling
+                        document.querySelectorAll(".day").forEach(el => el.classList.remove("selected"));
+                        dayElem.classList.add("selected");
+                        returnDateInput.value = `${d} ${selectedMonth.textContent} ${year}`;
+                        calendarContainer.classList.add('hidden');
+                    };
+                    calendar.appendChild(dayElem);
+                }
+            }
+            updateCalendar(new Date().getMonth() + 1, currentYear);
+        });
+    </script>
+</body>
+</html>

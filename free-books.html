@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Books - Book Bridge</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body class="bg-gradient-to-r from-blue-50 to-purple-50 text-gray-900 transition-colors duration-500">
+    <!-- Header -->
+    <header class="bg-purple-600 p-4 text-white flex justify-between items-center shadow-lg sticky top-0 z-50">
+        <h1 class="text-3xl font-bold">📚 Book Bridge</h1>
+        <nav class="hidden md:flex space-x-4 items-center">
+            <a href="dashboard.html" class="text-white hover:text-gray-300">Home</a>
+            <a href="sell.html" class="text-white hover:text-gray-300">Sell</a>
+            <a href="donate.html" class="text-white hover:text-gray-300">Donate</a>
+            <a href="buy.html" class="text-white hover:text-gray-300">Buy</a>
+            <div class="relative">
+                <button id="profile-dropdown" class="flex items-center hover:text-gray-300 focus:outline-none">
+                    <img src="https://sickonsin.com/cdn/shop/products/Siamese_Cat_9_Lives_Club_Accessory_SickOnSin.jpg?v=1596859843" alt="Profile" class="w-10 h-10 rounded-full">
+                </button>
+                <div id="dropdown-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-50">
+                    <ul class="text-gray-700">
+                        <li><a href="profile.html" class="block px-4 py-2 hover:bg-purple-100">My Profile</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-purple-100">Edit Listings</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-purple-100">Wishlist</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-purple-100">Settings</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-purple-100">Sign Out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Free Books Section -->
+    <section class="container mx-auto p-4">
+        <h2 class="text-2xl font-bold mb-6 text-center">Free Books</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Book Card Example -->
+            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                <img src="https://via.placeholder.com/150" alt="Book Cover" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-semibold">Book Title</h3>
+                <p class="text-gray-600">Author: Author Name</p>
+                <p class="text-gray-600">Condition: Good</p>
+                <p class="text-gray-600">Contact: donor@example.com</p>
+                <button class="w-full bg-purple-600 text-white p-2 rounded-lg mt-4 hover:bg-purple-700 transition-all">Request Book</button>
+            </div>
+            <!-- Repeat for more books -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-purple-600 text-white text-center p-4 mt-16">
+        <p>&copy; 2023 Book Bridge. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // GSAP Animations (Only for header and heading)
+        gsap.from("header", { duration: 1, y: -50, opacity: 0, ease: "power2.out" });
+        gsap.from("h2", { duration: 1, x: -100, opacity: 0, delay: 0.5 });
+
+        // Dropdown Menu Functionality
+        const profileDropdown = document.getElementById('profile-dropdown');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+        let hideTimeout;
+
+        if (profileDropdown && dropdownMenu) {
+            profileDropdown.addEventListener('mouseenter', () => {
+                clearTimeout(hideTimeout);
+                dropdownMenu.classList.remove('hidden');
+            });
+
+            profileDropdown.addEventListener('mouseleave', () => {
+                hideTimeout = setTimeout(() => {
+                    dropdownMenu.classList.add('hidden');
+                }, 300);
+            });
+
+            dropdownMenu.addEventListener('mouseenter', () => {
+                clearTimeout(hideTimeout);
+            });
+
+            dropdownMenu.addEventListener('mouseleave', () => {
+                hideTimeout = setTimeout(() => {
+                    dropdownMenu.classList.add('hidden');
+                }, 300);
+            });
+        }
+    </script>
+</body>
+</html>
