@@ -408,7 +408,7 @@ form button:hover {
         width: 100%;
         padding-top: 60px;
         text-align: center;
-        background: #fff;
+        background: url("images/wallpaper removed.jpg") center/cover no-repeat;
         transition: 0.2s ease;
     }
 
