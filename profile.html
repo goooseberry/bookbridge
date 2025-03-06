@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | BookBridge</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="icon" type="image/x-icon" href="images/main.png">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <span class="hamburger-btn material-symbols-rounded">menu</span>
+            <a href="home.html" class="logo" id="logo">
+                <img src="images/main.png" alt="logo">
+                <h2>BookBridge</h2>
+            </a>
+            
+            <div class="profile-dropdown">
+                <button class="profile-btn">
+                    <img src="images/walter.jpg" alt="Profile">
+                </button>
+                <div class="dropdown-content">
+                    <a href="profile.html">Profile</a>
+                    <a href="dashboard.html">Dashboard</a>
+                    <a href="#" id="logout-link">Logout</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="profile-container">
+        <h1>Your Profile</h1>
+        <div class="profile-info">
+            <div class="profile-picture">
+                <img src="images/profile-icon.png" alt="Profile Picture">
+                <button class="edit-btn">Edit Picture</button>
+            </div>
+            <div class="profile-details">
+                <p><strong>Name:</strong> Say my name</p>
+                <p><strong>Email:</strong> example@example.com</p>
+                <p><strong>Joined:</strong> January 2023</p>
+                <button class="edit-btn">Edit Profile</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 BookBridge. All rights reserved.</p>
+    </footer>
+
+    <script type="module" src="auth.js" defer></script>
+</body>
+
+</html>

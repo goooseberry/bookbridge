@@ -1,0 +1,3 @@
+BookBridge is a platform designed to help college students buy, sell, donate, or exchange books easily. 
+Our mission is to make educational resources more accessible and affordable by connecting students directly with each other. 
+With BookBridge, you can find the right books at the right price while also giving back to the community.

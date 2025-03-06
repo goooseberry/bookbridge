@@ -1,0 +1,42 @@
+/* Profile Page Styles */
+.profile-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.profile-info {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 12px;
+}
+
+.profile-picture img {
+    width: 150px;
+    border-radius: 50%;
+}
+
+.profile-details p {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.edit-btn {
+    padding: 10px 20px;
+    background: #00bcd4;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.edit-btn:hover {
+    background: #0097a7;
+}
+

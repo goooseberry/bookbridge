@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | BookBridge</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="icon" type="image/x-icon" href="images/main.png">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <span class="hamburger-btn material-symbols-rounded">menu</span>
+            <a href="home.html" class="logo" id="logo">
+                <img src="images/main.png" alt="logo">
+                <h2>BookBridge</h2>
+            </a>
+           
+            <div class="profile-dropdown">
+                <button class="profile-btn">
+                    <img src="images/walter.jpg" alt="Profile">
+                </button>
+                <div class="dropdown-content">
+                    <a href="profile.html">Profile</a>
+                    <a href="dashboard.html">Dashboard</a>
+                    <a href="#" id="logout-link">Logout</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+        <h1>Dashboard</h1>
+        <div class="dashboard-sections">
+            <section class="activity-section">
+                <h2>Recent Activity</h2>
+                <ul>
+                    <li>You sold "Book Title 1" for Rs 10.00</li>
+                    <li>You donated "Book Title 2"</li>
+                    <li>You purchased "Book Title 3" for Rs 15.00</li>
+                </ul>
+            </section>
+
+            <section class="books-section">
+                <h2>Your Books</h2>
+                <div class="book-grid">
+                    <div class="book-card">
+                        <img src="images/book1.jpg" alt="Book 1">
+                        <h3>Book Title 1</h3>
+                        <p>Status: Sold</p>
+                    </div>
+                    <div class="book-card">
+                        <img src="images/book2.jpg" alt="Book 2">
+                        <h3>Book Title 2</h3>
+                        <p>Status: Donated</p>
+                    </div>
+                    <!-- Add more book cards as needed -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 BookBridge. All rights reserved.</p>
+    </footer>
+
+    <script type="module" src="auth.js" defer></script>
+</body>
+
+</html>

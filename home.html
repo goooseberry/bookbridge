@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | BookBridge</title>
+    <!-- Google Fonts Link For Icons -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="home.css">
+    <script src="script.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="images/main.png">
+    
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <!-- Hamburger button for mobile menu -->
+            <span class="hamburger-btn material-symbols-rounded">menu</span>
+
+            <!-- Logo -->
+            <a  class="logo" id="logo">
+                <img src="images/main.png" alt="logo">
+                <h2>BookBridge</h2>
+            </a>
+
+            <!-- Navigation links -->
+            <ul class="links">
+                <span class="close-btn material-symbols-rounded">close</span>
+            </ul>
+
+            <!-- Profile dropdown -->
+            <div class="profile-dropdown">
+                <button class="profile-btn">
+                    <img src="images/walter.jpg" alt="Profile">
+                </button>
+                <div class="dropdown-content">
+                    <a href="profile.html">Profile</a>
+                    <a href="dashboard.html">Dashboard</a>
+                    <a href="#" id="logout-link">Logout</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="home-container">
+        <section class="hero-section">
+            <h1>Welcome to BookBridge</h1>
+            <p>Share knowledge, Save money</p>
+            <div class="cta-buttons">
+                <a href="sell.html" class="cta-btn">Sell Books</a>
+                <a href="donate.html" class="cta-btn">Donate Books</a>
+                <a href="buy.html" class="cta-btn">Buy Books</a>
+            </div>
+        </section>
+
+        <section class="featured-books">
+            <h2>Featured Books</h2>
+            <div class="book-grid">
+                <!-- Book cards will be dynamically loaded here -->
+                <div class="book-card">
+                    <img src="#" alt="Book 1">
+                    <h3>Book Title 1</h3>
+                    <p>Author: Author Name</p>
+                    <p>Price: Rs 10.00</p>
+                    <button class="buy-btn">Buy Now</button>
+                </div>
+                <div class="book-card">
+                    <img src="#" alt="Book 2">
+                    <h3>Book Title 2</h3>
+                    <p>Author: Author Name</p>
+                    <p>Price: Rs 15.00</p>
+                    <button class="buy-btn">Buy Now</button>
+                </div>
+                <!-- Add more book cards as needed -->
+            </div>
+        </section>
+    </main>
+
+
+
+    <!-- Firebase and Auth Script -->
+    <script type="module" src="auth.js" defer></script>
+</body>
+
+</html>
