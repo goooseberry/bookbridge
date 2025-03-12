@@ -1,0 +1,494 @@
+/* Importing Google font - Open Sans */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    width: 100%;
+    background: url("/assets/images/wallpaper removed.jpg") center/cover fixed no-repeat;
+}
+
+.bg-wrapper {
+    min-height: 100vh;
+    width: 100%;
+    background: url("/assets/images/wallpaper removed.jpg") center/cover no-repeat;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* Content wrapper to ensure content appears above background */
+.content-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    padding: 0 10px;
+}
+
+.navbar {
+    display: flex;
+    padding: 22px 0;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: space-between;
+    /* Remove the fixed position that was causing the issue */
+    position: relative;
+    width: auto;
+    left: 0;
+    right: 0;
+}
+
+.navbar .hamburger-btn {
+    display: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.navbar .logo {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.navbar .logo img {
+    width: 40px;
+    border-radius: 50%;
+}
+
+.navbar .logo h2 {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.7rem;
+}
+
+.navbar .links {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+    align-items: center;
+}
+
+.navbar .close-btn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    display: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.navbar .close-btn:hover {
+    color: #00bcd4;
+    transform: scale(1.2);
+}
+
+.navbar .links a {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.1s ease;
+}
+
+.navbar .links a:hover {
+    color: #19e8ff;
+}
+
+.navbar .login-btn {
+    border: none;
+    outline: none;
+    background: #fff;
+    color: #275360;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 0.15s ease;
+}
+
+.navbar .login-btn:hover {
+    background: #ddd;
+}
+
+.form-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+    width: 100%;
+    max-width: 720px;
+    opacity: 0;
+    pointer-events: none;
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+    backdrop-filter: blur(15px) saturate(180%); /* Frosted glass effect */
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    transform: translate(-50%, -70%);
+    padding: 20px;
+    transition: transform 0.3s ease, opacity 0.1s;
+}
+
+/* When active, make it visible */
+.show-popup .form-popup {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%);
+}
+
+.form-popup .close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.form-popup .close-btn:hover {
+    color: #00bcd4;
+    transform: scale(1.2);
+}
+
+.blur-bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    backdrop-filter: blur(5px); /* Frosted glass effect */
+    -webkit-backdrop-filter: blur(5px); /* For Safari support */
+    transition: 0.1s ease;
+}
+
+.show-popup .blur-bg-overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.form-popup .form-box {
+    display: flex;
+}
+
+.form-box .form-details {
+    width: 100%;
+    color: #fff;
+    max-width: 330px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login .form-details {
+    padding: 0 40px;
+    background: url("/assets/images/Book-Bridge.png");
+    background-position: center;
+    background-size: cover;
+}
+
+.signup .form-details {
+    padding: 0 20px;
+    background: url("/assets/images/Book-Bridge.png");
+    background-position: center;
+    background-size: cover;
+}
+
+.form-box .form-content {
+    width: 100%;
+    padding: 20px;
+}
+
+.form-box h2 {
+    text-align: center;
+    margin-bottom: 29px;
+    color: #fff;
+}
+
+form .input-field {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.input-field input {
+    height: 100%;
+    width: 100%;
+    background: none;
+    outline: none;
+    font-size: 0.95rem;
+    padding: 0 15px;
+    border: 1px solid #717171;
+    border-radius: 3px;
+}
+
+.input-field input:focus {
+    border: 1px solid #00bcd4;
+}
+
+.input-field label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #dfdada;
+    pointer-events: none;
+    transition: 0.2s ease;
+}
+
+.input-field input:is(:focus, :valid) {
+    padding: 16px 15px 0;
+    color: #fff;
+}
+
+.input-field input:is(:focus, :valid)~label {
+    transform: translateY(-120%);
+    color: #00bcd4;
+    font-size: 0.75rem;
+}
+
+.form-box a {
+    color: #00bcd4;
+    text-decoration: none;
+}
+
+.form-box a:hover {
+    text-decoration: underline;
+}
+
+form :where(.forgot-pass-link, .bottom-link) {
+    display: inline-flex;
+    margin-top: 13px;
+    font-size: 0.95rem;
+}
+
+form button {
+    width: 100%;
+    color: #fff;
+    border: none;
+    outline: none;
+    padding: 14px 0;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 25px 0;
+    background: #00bcd4;
+    transition: 0.2s ease;
+}
+
+form button:hover {
+    background: #0097a7;
+}
+
+.form-content .bottom-link {
+    text-align: center;
+}
+
+.form-popup .signup,
+.form-popup.show-signup .login {
+    display: none;
+}
+
+.form-popup.show-signup .signup {
+    display: flex;
+}
+
+/* Hide all popups by default */
+.form-popup {
+    display: none;
+}
+
+/* Show popup when body has the show-popup class */
+.show-popup .form-popup {
+    display: block;
+}
+
+/* About Us, Contact, and Guideline Popup Text */
+#about-us-content, #contact-content, #guideline-content {
+    font-size: 18px; /* Increase text size */
+    color: #fff; /* Change font color */
+    font-weight: 500; /* Make text slightly bold */
+    line-height: 1.6; /* Improve readability */
+}
+
+.video-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0) rotateY(180deg); /* Portal spin */
+    z-index: 20;
+    width: 90%;
+    max-width: 1000px;
+    background: rgba(20, 20, 10, 0.8); /* Dark meth-lab background */
+    border: 2px solid rgba(200, 180, 50, 0.5); /* Faded golden border */
+    backdrop-filter: blur(30px) saturate(250%);
+    -webkit-backdrop-filter: blur(30px) saturate(250%);
+    padding: 25px;
+    border-radius: 16px;
+    display: none;
+    text-align: center;
+    opacity: 0;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+/* Breaking Bad Yellow-Green Glow Effect */
+@keyframes breakingBadGlow {
+    0% { box-shadow: 0 0 15px rgba(255, 255, 100, 0.5); }
+    50% { box-shadow: 0 0 40px rgba(255, 200, 50, 0.8); }
+    100% { box-shadow: 0 0 15px rgba(255, 255, 100, 0.5); }
+}
+
+.video-popup.show {
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotateY(0deg); /* Spins into place */
+    animation: breakingBadGlow 1.5s infinite alternate ease-in-out;
+}
+
+/* Golden-Yellow Glow on Video Frame */
+.video-popup video {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 200, 50, 0.7);
+    box-shadow: 0 0 30px rgba(255, 200, 50, 0.9);
+}
+
+/* Close button styling */
+.video-popup .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+.video-popup .close-btn:hover {
+    color: #00bcd4;
+    transform: scale(1.2);
+}
+
+.show-popup .blur-bg-overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.show-popup .navbar {
+    pointer-events: none; /* Disable clicking on navbar */
+}
+
+.show-popup .video-popup {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#resendVerification {
+    display: none;
+}
+
+#resendVerification.visible {
+    display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 950px) {
+    .navbar :is(.hamburger-btn, .close-btn) {
+        display: block;
+        color:#fff
+    }
+
+    .navbar {
+        padding: 15px 0;
+    }
+
+    .navbar .logo img {
+        display: none;
+    }
+
+    .navbar .logo h2 {
+        font-size: 1.4rem;
+    }
+
+    .navbar .links {
+        position: fixed;
+        top: 0;
+        z-index: 10;
+        left: -100%;
+        display: block;
+        height: 100vh;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.1); 
+        border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+        backdrop-filter: blur(15px) saturate(180%); 
+        padding-top: 60px;
+        text-align: center;
+        background: url("/assets/images/wallpaper removed.jpg") center/cover no-repeat;
+        transition: 0.2s ease;
+    }
+
+    .navbar .links.show-menu {
+        left: 0;
+    }
+
+    .navbar .links a {
+        display: inline-flex;
+        margin: 20px 0;
+        font-size: 1.2rem;
+        color: #fff;
+    }
+
+    .navbar .links a:hover {
+        color: #00BCD4;
+    }
+
+    .navbar .login-btn {
+        font-size: 0.9rem;
+        padding: 7px 10px;
+    }
+   
+}
+
+@media (max-width: 760px) {
+    
+    .form-popup {
+        width: 95%;
+    }
+
+    .form-box .form-details {
+        display: none;
+    }
+
+    .form-box .form-content {
+        padding: 30px 20px;
+    }}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Books</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
+    <link rel="stylesheet" href="css/sell.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <script src="script/loadSidebar.js" type="module" defer></script>
+</head>
+<body>
+    <div class="bg-wrapper"></div>
+    <div class="content-wrapper">
+        <div class="sell-container">
+            <div class="sell-form">
+                <h2>List Your Book</h2>
+                <div class="form-layout">
+                    <div class="form-left">
+                        <div class="upload-area">
+                            <div class="upload-preview">
+                                <img id="preview" src="assets/images/Book-Bridge.png" alt="Book preview">
+                            </div>
+                            <label for="bookImage" class="upload-btn">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                Upload Book Cover
+                            </label>
+                            <input type="file" id="bookImage" accept="image/*" hidden>
+                        </div>
+                    </div>
+                    <div class="form-right">
+                        <form id="bookSellForm">
+                            <div class="input-group">
+                                <label>Book Title</label>
+                                <input type="text" name="title" class="fancy-input" required placeholder="Book Title">
+                            </div>
+                            <div class="input-group">
+                                <label>Author</label>
+                                <input type="text" name="author" class="fancy-input" required placeholder="Author">
+                            </div>
+                            <div class="input-group">
+                                <label>Price</label>
+                                <input type="text" name="price" class="fancy-input" pattern="[0-9]*\.?[0-9]*" required placeholder="Price">
+                            </div>
+                            <div class="input-group">
+                                <label>Category</label>
+                                <div class="category-buttons">
+                                    <input type="radio" id="fiction" name="category" value="fiction" required>
+                                    <label for="fiction" class="category-label">Fiction</label>
+                                    <input type="radio" id="non-fiction" name="category" value="non-fiction">
+                                    <label for="non-fiction" class="category-label">Non-Fiction</label>
+                                    <input type="radio" id="academic" name="category" value="academic">
+                                    <label for="academic" class="category-label">Academic</label>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label>Book Condition</label>
+                                <div class="condition-buttons">
+                                    <input type="radio" id="new" name="condition" value="new">
+                                    <label for="new" class="condition-label">New</label>
+                                    <input type="radio" id="like-new" name="condition" value="like-new">
+                                    <label for="like-new" class="condition-label">Like New</label>
+                                    <input type="radio" id="used" name="condition" value="used">
+                                    <label for="used" class="condition-label">Used</label>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label>Description</label>
+                                <textarea name="description" class="fancy-input" rows="4" required placeholder="Description"></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">
+                                <span class="button-text">List for Sale</span>
+                                <span class="loading-spinner"></span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="script/sell.js"></script>
+</body>
+</html>

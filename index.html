@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="images/main.png">
+    <!-- Google Fonts Link For Icons -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
+    <link rel="stylesheet" href="css/style.css">
+   
+    <script src="script/script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <!-- Hamburger button for mobile menu -->
+            <span class="hamburger-btn material-symbols-rounded">menu</span>
+
+            <!-- Logo -->
+            <a href="#" class="logo" id="logo">
+                <img src="assets/images/main.png" alt="logo">
+                <h2>BookBridge</h2>
+            </a>
+
+            <!-- Navigation links -->
+            <ul class="links">
+                <span class="close-btn material-symbols-rounded">close</span>
+                <li><a href="home.html" id="home-link">Home</a></li>
+                <li><a href="#" id="about-us-link">About us</a></li>
+                <li><a href="#" id="video-link">Click me</a></li>
+                <li><a href="#" id="guideline-link">Guideline</a></li>
+                <li><a href="#" id="contact-link">Contact us</a></li>
+            </ul>
+
+            <!-- Login button -->
+            <button class="login-btn">LOG IN</button>
+        </nav>
+    </header>
+
+    <!-- Blur background overlay for popups -->
+    <div class="blur-bg-overlay"></div>
+
+    <!-- Login and Signup Popup -->
+    <div class="form-popup" id="login-popup">
+        <span class="close-btn material-symbols-rounded">close</span>
+        <div class="form-box login">
+            <div class="form-details"></div>
+            <div class="form-content">
+                <h2>LOGIN</h2>
+                <form id="login-form">
+                    <div class="input-field">
+                        <input type="text" id="login-email" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" id="login-password" required>
+                        <label>Password</label>
+                    </div>
+
+                    <a href="#" class="forgot-pass-link" id="forgot-password-link">Reset password</a>
+                    <button type="submit">Log In</button>
+                </form>
+                <div class="bottom-link">
+                    <p id="signup-link-container">
+                        Don't have an account? <a href="#" id="signup-link">Signup</a>
+                    </p>
+                    <p id="resendVerification" style="display: none;">
+                        Didn't receive the verification email? <a href="#" id="resendVerificationLink">Resend verification email</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="form-box signup">
+            <div class="form-details"></div>
+            <div class="form-content">
+                <h2>SIGNUP</h2>
+                <form id="signup-form">
+                    <div class="input-field">
+                        <input type="text" id="signup-name" required>
+                        <label>Enter your name</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="email" id="signup-email" required>
+                        <label>Enter your email</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" id="signup-password" required>
+                        <label>Create password (min length 6)</label>
+                    </div>
+                    <button type="submit">Sign Up</button>
+                </form>
+                <div class="bottom-link">
+                    Already have an account? <a href="#" id="login-link">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Us Popup -->
+    <div class="form-popup" id="about-us-popup">
+        <span class="close-btn material-symbols-rounded">close</span>
+        <div class="form-box">
+            <div class="form-content">
+                <h2>About Us</h2>
+                <p id="about-us-content">Loading...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Popup -->
+    <div class="form-popup" id="contact-popup">
+        <span class="close-btn material-symbols-rounded">close</span>
+        <div class="form-box">
+            <div class="form-content">
+                <h2>Contact Us</h2>
+                <p id="contact-content">Loading...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Guideline Popup -->
+    <div class="form-popup" id="guideline-popup">
+        <span class="close-btn material-symbols-rounded">close</span>
+        <div class="form-box">
+            <div class="form-content">
+                <h2>Guidelines</h2>
+                <p id="guideline-content">Loading...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Popup -->
+    <div class="video-popup" id="video-popup">
+        <span class="close-btn material-symbols-rounded" id="close-video">close</span>
+        <video id="popup-video" controls>
+            <source src="assets/video/book bridge video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Firebase and Auth Script -->
+    <script type="module" src="script/auth.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | BookBridge</title>
+    <!-- Google Fonts Link For Icons -->
+    <link rel="stylesheet"href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <script src="script/loadSidebar.js" type="module" defer></script><!-- Include the sidebar loader -->
+    <link rel="icon" type="image/x-icon" href="assets/images/main.png">
+</head>
+<body>
+    <!-- Main Content -->
+    <main class="home-container">
+        <section class="hero-section">
+            <h1>Welcome to BookBridge</h1>
+            <p>Share knowledge, Save money</p>
+            <div class="cta-buttons">
+                <a href="sell.html" class="cta-btn">Sell Books</a>
+                <a href="donate.html" class="cta-btn">Donate Books</a>
+                <a href="buy.html" class="cta-btn">Buy Books</a>
+                <a href="free.html" class="cta-btn">Free Books</a>
+            </div>
+        </section>
+
+        <section class="featured-books">
+            <h2>Featured Books</h2>
+            <div class="book-grid">
+                <div class="book-card">
+                    <img src="#" alt="Book 1">
+                    <h3>Book Title 1</h3>
+                    <p>Author: Author Name</p>
+                    <p>Price: Rs 10.00</p>
+                    <button class="buy-btn">Buy Now</button>
+                </div>
+                <div class="book-card">
+                    <img src="#" alt="Book 2">
+                    <h3>Book Title 2</h3>
+                    <p>Author: Author Name</p>
+                    <p>Price: Rs 15.00</p>
+                    <button class="buy-btn">Buy Now</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Firebase and Auth Script -->
+    <script type="module" src="script/auth.js" defer></script>
+</body>
+</html>
