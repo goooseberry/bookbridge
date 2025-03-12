@@ -97,9 +97,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    loadText("about.txt", "about-us-content");
-    loadText("contact.txt", "contact-content");
-    loadText("guideline.txt", "guideline-content");
+    loadText("../assets/text/about.txt", "about-us-content");
+    loadText("../assets/text/contact.txt", "contact-content");
+    loadText("../assets/text/guideline.txt", "guideline-content");
 });
 
 // Video Popup Logic
