@@ -11,13 +11,13 @@
 body {
     min-height: 100vh;
     width: 100%;
-    background: url("assets/images/wallpaper removed.jpg") center/cover fixed no-repeat;
+    background: url("../assets/images/wallpaper removed.jpg") center/cover fixed no-repeat;
 }
 
 .bg-wrapper {
     min-height: 100vh;
     width: 100%;
-    background: url("assets/images/wallpaper removed.jpg") center/cover no-repeat;
+    background: url("../assets/images/wallpaper removed.jpg") center/cover no-repeat;
     position: fixed;
     top: 0;
     left: 0;
@@ -208,14 +208,14 @@ header {
 
 .login .form-details {
     padding: 0 40px;
-    background: url("assets/images/Book-Bridge.png");
+    background: url("../assets/images/Book-Bridge.png");
     background-position: center;
     background-size: cover;
 }
 
 .signup .form-details {
     padding: 0 20px;
-    background: url("assets/images/Book-Bridge.png");
+    background: url("../assets/images/Book-Bridge.png");
     background-position: center;
     background-size: cover;
 }
@@ -453,7 +453,7 @@ form button:hover {
         backdrop-filter: blur(15px) saturate(180%); 
         padding-top: 60px;
         text-align: center;
-        background: url("assets/images/wallpaper removed.jpg") center/cover no-repeat;
+        background: url("../assets/images/wallpaper removed.jpg") center/cover no-repeat;
         transition: 0.2s ease;
     }
 
